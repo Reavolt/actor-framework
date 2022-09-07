@@ -20,6 +20,12 @@ using getsockopt_ptr = char*;
 using socket_send_ptr = const char*;
 using socket_recv_ptr = char*;
 using socket_size_type = int;
+#elif CAF_ANDROID
+using setsockopt_ptr = const void*;
+using getsockopt_ptr = void*;
+using socket_send_ptr = const void*;
+using socket_recv_ptr = void*;
+using socket_size_type = int;
 #else
 using setsockopt_ptr = const void*;
 using getsockopt_ptr = void*;
