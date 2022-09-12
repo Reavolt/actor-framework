@@ -31,7 +31,7 @@ using setsockopt_ptr = const void*;
 using getsockopt_ptr = void*;
 using socket_send_ptr = const void*;
 using socket_recv_ptr = void*;
-using socket_size_type = int;
+using socket_size_type = unsigned;
 #endif
 
 using signed_size_type = std::make_signed<size_t>::type;
