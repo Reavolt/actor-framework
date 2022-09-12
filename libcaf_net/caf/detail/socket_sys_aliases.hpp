@@ -14,13 +14,36 @@ using getsockopt_ptr = char*;
 using socket_send_ptr = const char*;
 using socket_recv_ptr = char*;
 using socket_size_type = int;
+#elif defined(CAF_ANDROID)
+using setsockopt_ptr = const void*;
+using getsockopt_ptr = void*;
+using socket_send_ptr = const void*;
+using socket_recv_ptr = void*;
+using socket_size_type = int;
 #else
 using setsockopt_ptr = const void*;
 using getsockopt_ptr = void*;
 using socket_send_ptr = const void*;
 using socket_recv_ptr = void*;
-using socket_size_type = unsigned;
+using socket_size_type = int;
 
 #endif // CAF_WINDOWS
 
 } // namespace caf::net
+
+
+// Annoying platform-dependent bootstrapping.
+#ifdef CAF_WINDOWS
+using setsockopt_ptr = const char*;
+using getsockopt_ptr = char*;
+using socket_send_ptr = const char*;
+using socket_recv_ptr = char*;
+using socket_size_type = int;
+
+#else
+using setsockopt_ptr = const void*;
+using getsockopt_ptr = void*;
+using socket_send_ptr = const void*;
+using socket_recv_ptr = void*;
+using socket_size_type = int;
+#endif
