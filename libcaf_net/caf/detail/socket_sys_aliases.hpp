@@ -34,8 +34,6 @@ using getsockopt_ptr = void*;
 using socket_send_ptr = const void*;
 using socket_recv_ptr = void*;
 using socket_size_type = unsigned;
-#endif
-
 #endif // CAF_WINDOWS
 
 } // namespace caf::net
