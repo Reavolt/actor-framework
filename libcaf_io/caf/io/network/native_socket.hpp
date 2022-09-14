@@ -14,11 +14,33 @@
 namespace caf::io::network {
 
 // Annoying platform-dependent bootstrapping.
+#ifdef CAF_WINDOWS
 using setsockopt_ptr = const char*;
 using getsockopt_ptr = char*;
 using socket_send_ptr = const char*;
 using socket_recv_ptr = char*;
+using socket_size_type = int;
+#elif defined(CAF_ANDROID)
+  #if defined(__LP64__) || defined(_LP64)
+    using setsockopt_ptr = const void*;
+    using getsockopt_ptr = void*;
+    using socket_send_ptr = const void*;
+    using socket_recv_ptr = void*;
+    using socket_size_type = int;
+  #else
+    using setsockopt_ptr = const void*;
+    using getsockopt_ptr = void*;
+    using socket_send_ptr = const void*;
+    using socket_recv_ptr = void*;
+    using socket_size_type = unsigned;
+  #endif // CAF_ANDROID
+#else
+using setsockopt_ptr = const void*;
+using getsockopt_ptr = void*;
+using socket_send_ptr = const void*;
+using socket_recv_ptr = void*;
 using socket_size_type = unsigned;
+#endif // CAF_WINDOWS
 
 using signed_size_type = std::make_signed<size_t>::type;
 
