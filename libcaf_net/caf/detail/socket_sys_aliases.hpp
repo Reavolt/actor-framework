@@ -8,32 +8,11 @@
 
 namespace caf::net {
 
-#ifdef CAF_WINDOWS
 using setsockopt_ptr = const char*;
 using getsockopt_ptr = char*;
 using socket_send_ptr = const char*;
 using socket_recv_ptr = char*;
-using socket_size_type = int;
-#elif defined(CAF_ANDROID)
-  #if defined(__LP64__) || defined(_LP64)
-    using setsockopt_ptr = const void*;
-    using getsockopt_ptr = void*;
-    using socket_send_ptr = const void*;
-    using socket_recv_ptr = void*;
-    using socket_size_type = unsigned;
-  #else
-    using setsockopt_ptr = const void*;
-    using getsockopt_ptr = void*;
-    using socket_send_ptr = const void*;
-    using socket_recv_ptr = void*;
-    using socket_size_type = int;
-  #endif
-#else
-using setsockopt_ptr = const void*;
-using getsockopt_ptr = void*;
-using socket_send_ptr = const void*;
-using socket_recv_ptr = void*;
 using socket_size_type = unsigned;
-#endif // CAF_WINDOWS
+
 
 } // namespace caf::net
