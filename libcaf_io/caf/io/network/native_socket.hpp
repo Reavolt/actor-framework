@@ -26,13 +26,13 @@ using socket_size_type = int;
     using getsockopt_ptr = void*;
     using socket_send_ptr = const void*;
     using socket_recv_ptr = void*;
-    using socket_size_type = int;
+    using socket_size_type = unsigned;
   #else
     using setsockopt_ptr = const void*;
     using getsockopt_ptr = void*;
     using socket_send_ptr = const void*;
     using socket_recv_ptr = void*;
-    using socket_size_type = unsigned;
+    using socket_size_type = int;
   #endif // CAF_ANDROID
 #else
 using setsockopt_ptr = const void*;
